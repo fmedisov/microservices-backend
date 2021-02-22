@@ -21,10 +21,10 @@ steps:
       repo: fmedisov/mse-backend
       username: ${DOCKER_USERNAME}
       password: ${DOCKER_PASSWORD}
-      dockerfile: Dockerfile-packaged
       tags:
         - latest
         - "v${DRONE_COMMIT}"
+      dockerfile: ./Dockerfile-packaged
   helm_deploy:
     image: quay.io/ipedrazas/drone-helm
     skip_tls_verify: true
