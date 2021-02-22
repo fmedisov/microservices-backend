@@ -1,0 +1,36 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: compile
+    image: maven:3-jdk-11
+    commands:
+      - mvn compile
+  - name: test
+    image: maven:3-jdk-11
+    commands:
+      - mvn test
+  - name: package
+    image: maven:3-jdk-11
+    commands:
+      - mvn package -DskipTests
+  - name: docker
+    image: plugins/docker
+    settings:
+      repo: fmedisov/mse-backend
+      username: ${DOCKER_USERNAME}
+      password: ${DOCKER_PASSWORD}
+      tags:
+        - latest
+        - "v${DRONE_COMMIT}"
+      dockerfile: ./Dockerfile-packaged
+  helm_deploy:
+    image: quay.io/ipedrazas/drone-helm
+    skip_tls_verify: true
+    helm_repos: mse-repo=https://fmedisov.github.io/microservices-deploy/
+    chart: mse-repo/mse-chart
+    release: mse-project
+    values: backend.image.tag=v${DRONE_COMMIT}
+    namespace: mse-ns
+    kubernetes_token: ${KUBERNETES_TOKEN}
