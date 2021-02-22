@@ -22,6 +22,7 @@ steps:
       username: ${DOCKER_USERNAME}
       password: ${DOCKER_PASSWORD}
       dockerfile: Dockerfile-packaged
+      debug: true
       build_args:
         - network=host
       tags:
