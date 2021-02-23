@@ -1,15 +1,5 @@
 FROM alpine:3.10.3 as packager
 
-RUN echo "http://dl-2.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories      && \
-    echo "http://dl-2.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories && \
-    echo "http://dl-3.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories      && \
-    echo "http://dl-3.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories && \
-    echo "http://dl-4.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories      && \
-    echo "http://dl-4.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories && \
-    echo "http://dl-5.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories      && \
-    echo "http://dl-5.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories
-
-
 RUN apk --no-cache add openjdk11-jdk openjdk11-jmods
 ENV JAVA_MINIMAL="/opt/java-minimal"
 # build minimal JRE
