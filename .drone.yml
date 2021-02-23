@@ -37,3 +37,6 @@ steps:
     values: backend.image.tag=v${DRONE_COMMIT}
     namespace: mse-ns
     kubernetes_token: ${KUBERNETES_TOKEN}
+trigger:
+  event:
+    - push
