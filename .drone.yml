@@ -23,8 +23,6 @@ steps:
       password: ${DOCKER_PASSWORD}
       dockerfile: Dockerfile-packaged
       debug: true
-      build_args:
-        - network=host
       tags:
         - latest
         - "v${DRONE_COMMIT}"
