@@ -19,8 +19,10 @@ steps:
     image: plugins/docker
     settings:
       repo: fmedisov/mse-backend
-      username: ${DOCKER_USERNAME}
-      password: ${DOCKER_PASSWORD}
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_userpassword
       dockerfile: Dockerfile-packaged
       debug: true
       tags:
