@@ -18,7 +18,7 @@ steps:
   - name: docker
     image: plugins/docker
     settings:
-      registry: hub.docker.com
+#      registry: hub.docker.com
       repo: fmedisov/mse-backend
       username: ${DOCKER_USERNAME}
       password: ${DOCKER_PASSWORD}
