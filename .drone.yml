@@ -36,6 +36,7 @@ steps:
     release: mse-project
     values: backend.image.tag=v${DRONE_BUILD_NUMBER}
     namespace: mse-ns
+    debug: true
     secrets:
       - api_server
       - kubernetes_token
