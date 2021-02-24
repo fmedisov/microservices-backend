@@ -22,8 +22,8 @@ steps:
       username: ${DOCKER_USERNAME}
       password: ${DOCKER_PASSWORD}
       dockerfile: Dockerfile-packaged
-#      build_args:
-#        - network=host
+      build_args:
+        - network=host
       tags:
         - latest
         - "v${DRONE_COMMIT}"
