@@ -24,7 +24,6 @@ steps:
       password:
         from_secret: docker_userpassword
       dockerfile: Dockerfile-packaged
-      debug: true
       tags:
         - latest
         - v${DRONE_BUILD_NUMBER}
