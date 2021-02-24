@@ -44,6 +44,7 @@ steps:
       namespace: mse-ns
       debug: true
       prefix: STAGING
+      stable_repo_url: https://charts.helm.sh/stable
 trigger:
   event:
     - push
