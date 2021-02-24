@@ -27,16 +27,18 @@ steps:
       debug: true
       tags:
         - latest
-        - v${DRONE_COMMIT}
+        - v${DRONE_BUILD_NUMBER}
   - name: helm_deploy
     image: quay.io/ipedrazas/drone-helm
     skip_tls_verify: true
     helm_repos: mse-repo=https://fmedisov.github.io/microservices-deploy/
     chart: mse-repo/mse-chart
     release: mse-project
-    values: backend.image.tag=v${DRONE_COMMIT}
+    values: backend.image.tag=v${DRONE_BUILD_NUMBER}
     namespace: mse-ns
-    kubernetes_token: ${KUBERNETES_TOKEN}
+    secrets:
+      - api_server
+      - kubernetes_token
 trigger:
   event:
     - push
