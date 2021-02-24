@@ -25,7 +25,7 @@ steps:
       debug: true
       tags:
         - latest
-        - "v${DRONE_COMMIT}"
+        - v${DRONE_COMMIT}
   - name: helm_deploy
     image: quay.io/ipedrazas/drone-helm
     skip_tls_verify: true
