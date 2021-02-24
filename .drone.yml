@@ -28,8 +28,13 @@ steps:
       tags:
         - latest
         - v${DRONE_BUILD_NUMBER}
-  - name: helm_deploy
+  - name: deploy_staging
     image: quay.io/ipedrazas/drone-helm
+    environment:
+      STAGING_API_SERVER:
+        from_secret: staging_api_server
+      STAGING_KUBERNETES_TOKEN:
+        from_secret: staging_kubernetes_token
     settings:
       skip_tls_verify: true
       helm_repos: mse-repo=https://fmedisov.github.io/microservices-deploy/
@@ -38,9 +43,7 @@ steps:
       values: backend.image.tag=v${DRONE_BUILD_NUMBER}
       namespace: mse-ns
       debug: true
-      secrets:
-        - api_server
-        - kubernetes_token
+      prefix: STAGING
 trigger:
   event:
     - push
